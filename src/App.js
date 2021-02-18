@@ -10,7 +10,7 @@ function App() {
     <Router>
       {/* <Alert/> */}
       <Route path="/" component={Login} exact />
-      <Route path="/dasnoard" component={Main} exact />
+      <Route path="/dashboard" component={Main} exact />
     </Router>
   );
 }

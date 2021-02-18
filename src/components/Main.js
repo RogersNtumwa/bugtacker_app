@@ -1,8 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Dashboard from "../screens/Dashboard";
 
-const Main = () => {
-  return <div></div>;
+const Main = ({ match }) => {
+  const { url } = match;
+  return (
+    <div>
+      <Route path={url} component={Dashboard} exact />
+    </div>
+  );
 };
 
 export default Main;

@@ -10,6 +10,7 @@ const Button = ({ label, color, type }) => {
     cursor: "pointer",
     color: "#fff",
     outline: "none",
+    fontSize: "1.6rem",
   };
   return (
     <button type={type} style={style}>
