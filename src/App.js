@@ -8,7 +8,7 @@ import Login from "./screens/Login";
 function App() {
   return (
     <Router>
-      {/* <Alert/> */}
+      
       <Route path="/" component={Login} exact />
       <Route path="/dashboard" component={Main} exact />
     </Router>
