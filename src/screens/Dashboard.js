@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 const Dashboard = ({ history }) => {
   const auth = useSelector((state) => state.auth);
@@ -11,7 +13,8 @@ const Dashboard = ({ history }) => {
   }, [isAuthenticated, history]);
   return (
     <div>
-      <h1>Welicome to My Dashboard</h1>
+      <Header />
+      <Sidebar />
     </div>
   );
 };
