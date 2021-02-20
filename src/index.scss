@@ -104,3 +104,24 @@
     }
   }
 }
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "sidebar main main";
+
+  .header {
+    grid-area: header;
+  }
+  .main {
+    grid-area: main;
+    background-color: blue;
+  }
+  .sidebar {
+    grid-area: sidebar;
+  }
+}

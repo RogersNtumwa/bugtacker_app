@@ -1,5 +1,12 @@
 import React from "react";
-import { FaBug, FaProjectDiagram, FaUserCog, FaUsers } from "react-icons/fa";
+import {
+  FaBug,
+  FaHome,
+  FaProjectDiagram,
+  FaUserCog,
+  FaUserPlus,
+  FaUsers,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import user from "../images/passmile.PNG";
 
@@ -12,7 +19,15 @@ const Sidebar = () => {
       </div>
       <ul className="sidebar__menu">
         <li className="sidebar__menu-item">
-          <Link to="/bugs" className="link">
+          <Link to="/dashboard" className="link">
+            <span>
+              <FaHome />
+            </span>
+            Home
+          </Link>
+        </li>
+        <li className="sidebar__menu-item">
+          <Link to="/dashboard/bugs" className="link">
             <span>
               <FaBug />
             </span>
@@ -20,15 +35,15 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="sidebar__menu-item">
-          <Link to="/users" className="link">
+          <Link to="/dashboard/users" className="link">
             <span>
-              <FaUsers />
+              <FaUserPlus />
             </span>
             Users
           </Link>
         </li>
         <li className="sidebar__menu-item">
-          <Link to="/users" className="link">
+          <Link to="/dashboard/projects" className="link">
             <span>
               <FaProjectDiagram />
             </span>
@@ -36,15 +51,15 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="sidebar__menu-item">
-          <Link to="/users" className="link">
+          <Link to="/dashboard/users" className="link">
             <span>
               <FaUsers />
             </span>
-            Users
+            Teams
           </Link>
         </li>
         <li className="sidebar__menu-item">
-          <Link to="/users" className="link">
+          <Link to="/dashboard/roles" className="link">
             <span>
               <FaUserCog />
             </span>
