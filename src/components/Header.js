@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
 
 const Header = () => {
   return (
     <div className="nav">
       <div className="nav navbar">
-        <span className="navbar__icon">
-          <FaBars />
-        </span>
         <Link to="/dashboard" className="navbar__brand">
           DashBoard
         </Link>

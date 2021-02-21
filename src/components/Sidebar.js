@@ -8,62 +8,57 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import user from "../images/passmile.PNG";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="sidebar__user">
-        <img src={user} alt="user" className="sidebar__user-img" />
-        <p className="sidebar__user-name">Welcome Rogers Ntumwa</p>
-      </div>
       <ul className="sidebar__menu">
         <li className="sidebar__menu-item">
           <Link to="/dashboard" className="link">
-            <span>
+            <span className="link__icon">
               <FaHome />
             </span>
-            Home
+            <span className="link__title">Home</span>
           </Link>
         </li>
         <li className="sidebar__menu-item">
           <Link to="/dashboard/bugs" className="link">
-            <span>
+            <span className="link__icon">
               <FaBug />
             </span>
-            Bugs
+            <span className="link__title">Bugs</span>
           </Link>
         </li>
         <li className="sidebar__menu-item">
           <Link to="/dashboard/users" className="link">
-            <span>
+            <span className="link__icon">
               <FaUserPlus />
             </span>
-            Users
+            <span className="link__title">Users</span>
           </Link>
         </li>
         <li className="sidebar__menu-item">
           <Link to="/dashboard/projects" className="link">
-            <span>
+            <span className="link__icon">
               <FaProjectDiagram />
             </span>
-            Project
+            <span className="link__title">Project</span>
           </Link>
         </li>
         <li className="sidebar__menu-item">
           <Link to="/dashboard/users" className="link">
-            <span>
+            <span className="link__icon">
               <FaUsers />
             </span>
-            Teams
+            <span className="link__title">Teams</span>
           </Link>
         </li>
         <li className="sidebar__menu-item">
           <Link to="/dashboard/roles" className="link">
-            <span>
+            <span className="link__icon">
               <FaUserCog />
             </span>
-            Role
+            <span className="link__title">Role</span>
           </Link>
         </li>
       </ul>
