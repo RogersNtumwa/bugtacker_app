@@ -16,10 +16,11 @@ import {
   BUG_CREATE_FAIL,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
+import { setAlert } from "./alert";
 
 // Desc: Gets all products
 // access: public
-export const listProducts = (keyword = "", currentPage) => async (dispatch) => {
+export const BugList = (keyword = "", currentPage) => async (dispatch) => {
   try {
     const { data } = await axios.get(
       `https://bugtracker-api-1.herokuapp.com/api/v1/bugs?keyword=${keyword}&page=${currentPage}`
@@ -49,7 +50,7 @@ export const bugDetails = (id) => async (dispatch) => {
       payload: data,
     });
 
-    dispatch(getRelatedProducts(id));
+    // dispatch(getRelatedProducts(id));
   } catch (error) {
     dispatch({
       type: BUG_DETAILS_FAIL,
@@ -73,7 +74,7 @@ export const deletebug = (id) => async (dispatch) => {
     dispatch({
       type: BUG_DELETE_SUCCESS,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
@@ -140,7 +141,7 @@ export const updateBug = (bug) => async (dispatch, getstate) => {
       type: BUG_UPDATE_SUCCESS,
       payload: data,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
