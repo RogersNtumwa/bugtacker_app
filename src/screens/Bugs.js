@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { BugList } from "../actions/bug";
 import { useDispatch, useSelector } from "react-redux";
 import Bug from "../components/Bug";
+import { Table } from "react-bootstrap";
 
 const Bugs = ({ match }) => {
   const [bugList, setBugList] = useState([]);
@@ -26,26 +27,27 @@ const Bugs = ({ match }) => {
 
   return (
     <div>
-      <h1>Bug screen</h1>
       {loading ? (
         "loading"
       ) : (
-        <div>
-          <table style={{ width: "100%" }}>
+        <Table bordered responsive className="table-sm">
+          <thead>
             <tr>
-              <th>id</th>
+              <th>ID</th>
               <th>Title</th>
               <th>status</th>
               <th>Description</th>
               <th>Project</th>
               <th>Report Date</th>
+              <th></th>
             </tr>
-
+          </thead>
+          <tbody>
             {bugList.map((bug) => (
               <Bug bug={bug} key={bug._id} />
             ))}
-          </table>
-        </div>
+          </tbody>
+        </Table>
       )}
     </div>
   );
