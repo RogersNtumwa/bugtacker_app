@@ -20,7 +20,7 @@ const Bug = ({ bug }) => {
       <td>{bug.project}</td>
       <td>{bug.createdAt}</td>
       <td>
-        <LinkContainer to={`/admin/product/${bug._id}/edit`}>
+        <LinkContainer to={`/dashboard/bugs/${bug._id}/edit`}>
           <Button variant="light" className="btn-sm">
             <i className="fas fa-edit"></i>
           </Button>

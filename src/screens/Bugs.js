@@ -23,7 +23,7 @@ const Bugs = ({ match }) => {
       setBugList(AllBugs);
       setBugNumbert(bugs.count);
     }
-  }, [dispatch, page]);
+  }, [dispatch, page, loading]);
 
   return (
     <div>

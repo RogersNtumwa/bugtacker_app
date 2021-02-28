@@ -41,7 +41,7 @@ export const bugsList = (state = initialState, action) => {
   }
 };
 
-export const bugDetails = (state = { bug: {} }, action) => {
+export const bugDetails = (state = { bug: {},loading:true }, action) => {
   const { type, payload } = action;
 
   switch (type) {
