@@ -12,28 +12,30 @@ const Bug = ({ bug }) => {
     classname = "Medium";
   }
   return (
-    <tr key={bug._id} className={classname}>
-      <td>{bug._id}</td>
-      <td>{bug.title}</td>
-      <td>{bug.status}</td>
-      <td> {bug.description}</td>
-      <td>{bug.project}</td>
-      <td>{bug.createdAt}</td>
-      <td>
-        <LinkContainer to={`/dashboard/bugs/${bug._id}/edit`}>
-          <Button variant="light" className="btn-sm">
-            <i className="fas fa-edit"></i>
+    <LinkContainer to={`/dashboard/bugs/${bug._id}`}>
+      <tr key={bug._id} className={classname}>
+        <td>{bug._id}</td>
+        <td>{bug.title}</td>
+        <td>{bug.status}</td>
+        <td> {bug.description}</td>
+        <td>{bug.project}</td>
+        <td>{bug.createdAt}</td>
+        <td>
+          <LinkContainer to={`/dashboard/bugs/${bug._id}/edit`}>
+            <Button variant="light" className="btn-sm">
+              <i className="fas fa-edit"></i>
+            </Button>
+          </LinkContainer>
+          <Button
+            variant="danger"
+            className="btn-sm"
+            // onClick={() => deletebugHandler(bug._id)}
+          >
+            <i className="fas fa-trash"></i>
           </Button>
-        </LinkContainer>
-        <Button
-          variant="danger"
-          className="btn-sm"
-          // onClick={() => deletebugHandler(bug._id)}
-        >
-          <i className="fas fa-trash"></i>
-        </Button>
-      </td>
-    </tr>
+        </td>
+      </tr>
+    </LinkContainer>
   );
 };
 

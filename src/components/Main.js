@@ -1,7 +1,8 @@
 import React, { useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
-import bugEdit from "../screens/bugEdit";
+
+import BugDetails from "../screens/BugDetails";
 import Bugs from "../screens/Bugs";
 import Dashboard from "../screens/Dashboard";
 import Projects from "../screens/Projects";
@@ -36,7 +37,7 @@ const Main = ({ match, history }) => {
           <Route path={url + "/users"} component={Users} exact />
           <Route path={url + "/profile"} component={Userprofile} exact />
           <Route path={url + "/bugs"} component={Bugs} exact />
-          <Route path={url + "/bugs/:id/edit"} component={bugEdit} exact />
+          <Route path={url + "/bugs/:id"} component={BugDetails} exact />
           <Route path={url + "/projects"} component={Projects} exact />
           <Route path={url + "/roles"} component={Roles} exact />
         </div>
