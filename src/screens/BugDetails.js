@@ -7,6 +7,7 @@ import { bugDetails } from "../actions/bug";
 
 const BugDetails = ({ match }) => {
   const bugData = useSelector((state) => state.bug);
+  
   const { loading, bug } = bugData;
 
   const dispatch = useDispatch();

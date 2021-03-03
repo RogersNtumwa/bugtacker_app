@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+
+import { logOut } from "../actions/auth";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logOut());
+  };
   return (
     <div className="nav">
       <div className="nav navbar">
@@ -29,7 +36,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="menu__list-item">
-            <Link to="/dashborad" className="menu__list-item_link">
+            <Link className="menu__list-item_link" onClick={logoutHandler}>
               <span>
                 <FaSignOutAlt />
               </span>
