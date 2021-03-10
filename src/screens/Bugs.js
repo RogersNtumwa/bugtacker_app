@@ -6,9 +6,9 @@ import Bug from "../components/Bug";
 import { Table } from "react-bootstrap";
 
 const Bugs = ({ match }) => {
+  const page_number = 1;
   const [bugList, setBugList] = useState([]);
-  const [bugNumber, setBugNumbert] = useState(0);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(page_number);
 
   const keyword = match.params.keyword;
   const dispatch = useDispatch();
@@ -18,12 +18,25 @@ const Bugs = ({ match }) => {
 
   useEffect(() => {
     dispatch(BugList(keyword, page));
+  }, [dispatch, page]);
+
+  useEffect(() => {
     if (!loading) {
-      const { bugs: AllBugs } = bugs.data;
-      setBugList(AllBugs);
-      setBugNumbert(bugs.count);
+      setBugList((prev) => [...prev, ...bugs.data.bugs]);
     }
-  }, [dispatch, page, loading]);
+  }, [bugs]);
+
+  const scrollToEnd = () => {
+    setPage((page) => page + 1);
+  };
+  window.onscroll = function () {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      scrollToEnd();
+    }
+  };
 
   return (
     <div>
@@ -39,7 +52,7 @@ const Bugs = ({ match }) => {
               <th>Description</th>
               <th>Project</th>
               <th>Report Date</th>
-              <th></th>
+              {/* <th></th> */}
             </tr>
           </thead>
           <tbody>
