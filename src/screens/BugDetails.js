@@ -7,7 +7,7 @@ import { bugDetails } from "../actions/bug";
 
 const BugDetails = ({ match }) => {
   const bugData = useSelector((state) => state.bug);
-  
+
   const { loading, bug } = bugData;
 
   const dispatch = useDispatch();
@@ -25,7 +25,19 @@ const BugDetails = ({ match }) => {
           "loading"
         ) : (
           <div>
-            <h2>Details for Bug:({bug.data._id}) </h2>
+            <div className="row">
+              <div className="col-md-10">
+                <h2>Details for Bug:({bug.data._id}) </h2>
+              </div>
+              <div className="col-md-2">
+                <Link
+                  className="btn btn-light my-3"
+                  to={`/dashboard/bugs/${bug.data._id}/edit`}
+                >
+                  Edit Bug
+                </Link>
+              </div>
+            </div>
             <Jumbotron>
               <h4 className="title">Title: {bug.data.title}</h4>
               <p>

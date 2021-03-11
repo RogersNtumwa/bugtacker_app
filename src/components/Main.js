@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
 
 import BugDetails from "../screens/BugDetails";
+import BugEditScreen from "../screens/BugEditScreen";
 import Bugs from "../screens/Bugs";
 import Dashboard from "../screens/Dashboard";
 import Projects from "../screens/Projects";
@@ -38,6 +39,11 @@ const Main = ({ match, history }) => {
           <Route path={url + "/profile"} component={Userprofile} exact />
           <Route path={url + "/bugs"} component={Bugs} exact />
           <Route path={url + "/bugs/:id"} component={BugDetails} exact />
+          <Route
+            path={url + "/bugs/:id/edit"}
+            component={BugEditScreen}
+            exact
+          />
           <Route path={url + "/projects"} component={Projects} exact />
           <Route path={url + "/roles"} component={Roles} exact />
         </div>
