@@ -14,6 +14,8 @@ import {
   BUG_CREATE_REQUEST,
   BUG_CREATE_SUCCESS,
   BUG_CREATE_FAIL,
+  BUG_MESSAGE_SUCCESS,
+  BUG_MESSAGE_FAIL,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
@@ -148,6 +150,41 @@ export const updateBug = (bug) => async (dispatch, getstate) => {
     }
     dispatch({
       type: BUG_UPDATE_FAIL,
+    });
+  }
+};
+
+export const commentBug = (bug) => async (dispatch, getstate) => {
+  dispatch({
+    type: BUG_UPDATE_REQUEST,
+  });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.put(
+      `https://bugtracker-api-1.herokuapp.com/api/v1/bugs/${bug._id}/message`,
+      bug,
+      config
+    );
+    dispatch({
+      type: BUG_MESSAGE_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: BUG_MESSAGE_FAIL,
     });
   }
 };

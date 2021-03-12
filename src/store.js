@@ -6,6 +6,7 @@ import alertReducer from "./reducers/alert";
 import {
   bugDetails,
   bugsList,
+  commentBugReducer,
   createBugReducer,
   deleteBugReducer,
   editBugReducer,
@@ -40,6 +41,7 @@ const reducer = combineReducers({
   bugs: bugsList,
   addBug: createBugReducer,
   editBug: editBugReducer,
+  commentBug: commentBugReducer,
   deleteBug: deleteBugReducer,
   roles: rolesListReducer,
   editRoles: editRoleReducer,

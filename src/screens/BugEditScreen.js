@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Col, Container, Form } from "react-bootstrap";
 
-import { bugDetails, updateBug } from "../actions/bug";
+import { bugDetails, updateBug, commentBug } from "../actions/bug";
 import { BUG_UPDATE_RESET } from "../actions/types";
 
 const BugEditScreen = ({ match, history }) => {
@@ -15,7 +15,7 @@ const BugEditScreen = ({ match, history }) => {
   const [status, setStatus] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [comments, setComments] = useState("");
+  const [comment, setComment] = useState("");
   const [createdBy, setCreatedBy] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
   const [addfile, setAddfile] = useState(false);
@@ -26,6 +26,8 @@ const BugEditScreen = ({ match, history }) => {
   const { loading, bug } = bugData;
   const bugUpdate = useSelector((state) => state.editBug);
   const { loading: loadingUpdate, success } = bugUpdate;
+  const bugComment = useSelector((state) => state.commentBug);
+  const { loading: loadingComment, success: commentSuccess } = bugComment;
 
   useEffect(() => {
     if (success) {
@@ -43,7 +45,7 @@ const BugEditScreen = ({ match, history }) => {
         setCreatedBy(bug.data.createdBy);
         setCategory(bug.data.category);
         setAssignedTo(bug.data.assignedTo);
-        setComments(bug.data.comments);
+        setComment(bug.data.comment);
       }
     }
   }, [dispatch, history, bug, bugId, success]);
@@ -58,16 +60,21 @@ const BugEditScreen = ({ match, history }) => {
         priority,
         status,
         category,
-        comments,
         createdBy,
         description,
         assignedTo,
         attarchments,
       })
     );
+    dispatch(
+      commentBug({
+        _id: bugId,
+        comment,
+      })
+    );
   };
   const onTickHandler = () => {
-    setAddfile(true);
+    setAddfile(!addfile);
     console.log(addfile);
   };
   return (
@@ -139,8 +146,8 @@ const BugEditScreen = ({ match, history }) => {
           <Form.Control
             as="textarea"
             rows={3}
-            value={comments}
-            onChange={(e) => setComments(e.target.value)}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
         </Form.Group>
 

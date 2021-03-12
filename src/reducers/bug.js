@@ -14,6 +14,8 @@ import {
   BUG_UPDATE_SUCCESS,
   BUG_UPDATE_FAIL,
   BUG_UPDATE_RESET,
+  BUG_MESSAGE_SUCCESS,
+  BUG_MESSAGE_FAIL,
 } from "../actions/types";
 const initialState = {
   bugs: [],
@@ -41,7 +43,7 @@ export const bugsList = (state = initialState, action) => {
   }
 };
 
-export const bugDetails = (state = { bug: {},loading:true }, action) => {
+export const bugDetails = (state = { bug: {}, loading: true }, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -113,12 +115,39 @@ export const editBugReducer = (state = { bug: {} }, action) => {
     case BUG_UPDATE_REQUEST:
       return { loading: true, ...state };
     case BUG_UPDATE_SUCCESS:
+    case BUG_MESSAGE_SUCCESS:
       return {
         loading: false,
         success: true,
         bug: payload,
       };
     case BUG_UPDATE_FAIL:
+    case BUG_MESSAGE_FAIL:
+      return {
+        loading: false,
+        error: payload,
+      };
+    case BUG_UPDATE_RESET:
+      return {
+        bug: {},
+      };
+    default:
+      return state;
+  }
+};
+export const commentBugReducer = (state = { bug: {} }, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case BUG_UPDATE_REQUEST:
+      return { loading: true, ...state };
+    case BUG_MESSAGE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        bug: payload,
+      };
+    case BUG_MESSAGE_FAIL:
       return {
         loading: false,
         error: payload,
