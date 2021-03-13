@@ -75,8 +75,25 @@ const BugEditScreen = ({ match, history }) => {
   };
   const onTickHandler = () => {
     setAddfile(!addfile);
-    console.log(addfile);
   };
+
+  const onchangeimage = (e) => {
+    const files = Array.from(e.target.files);
+    setpreviewAttarchments([]);
+    setAttarchments([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setpreviewAttarchments((oldArray) => [...oldArray, reader.result]);
+          setAttarchments((oldArray) => [...oldArray, reader.result]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   return (
     <Container>
       <Form onSubmit={onSubmitHandlerHandler}>
@@ -118,14 +135,18 @@ const BugEditScreen = ({ match, history }) => {
         <Form.Row>
           <Form.Group as={Col} controlId="formGridStatus">
             <Form.Label>Status</Form.Label>
-            <Form.Control as="select" defaultValue="Choose...">
-              <option>Choose...</option>
-              <option>New</option>
-              <option>Coding</option>
-              <option>In Review</option>
-              <option>Branded</option>
-              <option>Re-assigned</option>
-              <option>Rejected</option>
+            <Form.Control
+              as="select"
+              onChange={(e) => setStatus(e.target.value)}
+              defaultValue="Choose..."
+            >
+              <option>{status}</option>
+              <option value="New">New</option>
+              <option value="Coding">Coding</option>
+              <option value="In Reveiw">In Review</option>
+              <option value="Branded">Branded</option>
+              <option value="Re-assigned">Re-assigned</option>
+              <option value="Rejected">Rejected</option>
             </Form.Control>
           </Form.Group>
 
@@ -195,10 +216,25 @@ const BugEditScreen = ({ match, history }) => {
         </Form.Group>
         {addfile && (
           <Form.Group controlId="formGridComments">
-            <Form.File id="custom-file" label="Custom file input" custom />
+            <Form.File
+              id="custom-file"
+              label="Custom file input"
+              custom
+              onChange={onchangeimage}
+              multiple
+            />
+            {previewattarchments.map((image) => (
+              <img
+                src={image}
+                key={image}
+                alt="previewimage"
+                className="mt-3 mr-2"
+                height="52"
+                width="55"
+              />
+            ))}
           </Form.Group>
         )}
-
         <Button variant="primary" type="submit">
           Submit
         </Button>
