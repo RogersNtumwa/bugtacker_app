@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
+import AddBug from "../screens/AddBug";
 
 import BugDetails from "../screens/BugDetails";
 import BugEditScreen from "../screens/BugEditScreen";
@@ -39,6 +40,7 @@ const Main = ({ match, history }) => {
           <Route path={url + "/profile"} component={Userprofile} exact />
           <Route path={url + "/bugs"} component={Bugs} exact />
           <Route path={url + "/bugs/:id"} component={BugDetails} exact />
+          <Route path={url + "/newBUg"} component={AddBug} exact />
           <Route
             path={url + "/bugs/:id/edit"}
             component={BugEditScreen}

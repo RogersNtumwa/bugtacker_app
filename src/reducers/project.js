@@ -14,7 +14,10 @@ import {
   PROJECT_DELETE_SUCCESS,
 } from "../actions/types";
 
-export const projectListReducer = (state = { projects: [] }, action) => {
+export const projectListReducer = (
+  state = { projects: [], loading: true },
+  action
+) => {
   const { type, payload } = action;
   switch (type) {
     case PROJECTS_LIST_REQUEST:
@@ -22,13 +25,13 @@ export const projectListReducer = (state = { projects: [] }, action) => {
 
     case PROJECTS_LIST_SUCCESS:
       return {
-        loadi: false,
+        loading: false,
         projects: payload,
       };
 
     case PROJECTS_LIST_FAIL:
       return {
-        loadi: false,
+        loading: false,
         error: payload,
       };
 

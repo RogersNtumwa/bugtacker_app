@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import setAuthToken from "../utils/setAuthToken";
+import { setAlert } from "./alert";
 import {
   PROJECTS_LIST_FAIL,
   PROJECTS_LIST_REQUEST,
@@ -26,7 +27,7 @@ export const getProjects = () => async (dispatch) => {
 
     dispatch({
       type: PROJECTS_LIST_SUCCESS,
-      payload: data.data,
+      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -50,7 +51,7 @@ export const createProject = () => async (dispatch) => {
       type: PROJECT_CREATE_SUCCESS,
       payload: data.data,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
@@ -85,7 +86,7 @@ export const updateProject = (project) => async (dispatch, getstate) => {
       type: PROJECT_UPDATE_SUCCESS,
       payload: data,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));

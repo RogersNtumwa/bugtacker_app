@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 
 import { BugList } from "../actions/bug";
 import { useDispatch, useSelector } from "react-redux";
 import Bug from "../components/Bug";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Bugs = ({ match }) => {
   const page_number = 1;
@@ -49,24 +50,29 @@ const Bugs = ({ match }) => {
       {loading ? (
         "loading"
       ) : (
-        <Table bordered responsive className="table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>status</th>
-              <th>Description</th>
-              <th>Project</th>
-              <th>Report Date</th>
-              {/* <th></th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {bugList.map((bug) => (
-              <Bug bug={bug} key={bug._id} />
-            ))}
-          </tbody>
-        </Table>
+        <Fragment>
+          <Link to="/dashboard/newbug" className="btn btn-light my-3">
+            Add Bug
+          </Link>
+          <Table bordered responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>status</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>Report Date</th>
+                {/* <th></th> */}
+              </tr>
+            </thead>
+            <tbody>
+              {bugList.map((bug) => (
+                <Bug bug={bug} key={bug._id} />
+              ))}
+            </tbody>
+          </Table>
+        </Fragment>
       )}
     </div>
   );

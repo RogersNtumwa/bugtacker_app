@@ -19,8 +19,8 @@ const BugEditScreen = ({ match, history }) => {
   const [createdBy, setCreatedBy] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
   const [addfile, setAddfile] = useState(false);
-  const [attarchments, setAttarchments] = useState([]);
-  const [previewattarchments, setpreviewAttarchments] = useState([]);
+  const [attachments, setAttachments] = useState([]);
+  const [previewattachments, setpreviewAttachments] = useState([]);
 
   const bugData = useSelector((state) => state.bug);
   const { loading, bug } = bugData;
@@ -52,6 +52,7 @@ const BugEditScreen = ({ match, history }) => {
 
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
+    console.log(attachments);
     dispatch(
       updateBug({
         _id: bugId,
@@ -63,7 +64,7 @@ const BugEditScreen = ({ match, history }) => {
         createdBy,
         description,
         assignedTo,
-        attarchments,
+        attachments,
       })
     );
     dispatch(
@@ -79,15 +80,15 @@ const BugEditScreen = ({ match, history }) => {
 
   const onchangeimage = (e) => {
     const files = Array.from(e.target.files);
-    setpreviewAttarchments([]);
-    setAttarchments([]);
+    setpreviewAttachments([]);
+    setAttachments([]);
 
     files.forEach((file) => {
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.readyState === 2) {
-          setpreviewAttarchments((oldArray) => [...oldArray, reader.result]);
-          setAttarchments((oldArray) => [...oldArray, reader.result]);
+          setpreviewAttachments((oldArray) => [...oldArray, reader.result]);
+          setAttachments((oldArray) => [...oldArray, reader.result]);
         }
       };
       reader.readAsDataURL(file);
@@ -223,7 +224,7 @@ const BugEditScreen = ({ match, history }) => {
               onChange={onchangeimage}
               multiple
             />
-            {previewattarchments.map((image) => (
+            {previewattachments.map((image) => (
               <img
                 src={image}
                 key={image}

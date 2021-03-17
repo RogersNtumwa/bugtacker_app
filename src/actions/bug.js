@@ -135,10 +135,15 @@ export const updateBug = (bug) => async (dispatch, getstate) => {
     };
 
     const { data } = await axios.put(
-      `https://bugtracker-api-1.herokuapp.com/api/v1/bugs/${bug._id}`,
+      `http://localhost:5000/api/v1/bugs/${bug._id}`,
       bug,
       config
     );
+    // const { data } = await axios.put(
+    //   `https://bugtracker-api-1.herokuapp.com/api/v1/bugs/${bug._id}`,
+    //   bug,
+    //   config
+    // );
     dispatch({
       type: BUG_UPDATE_SUCCESS,
       payload: data,

@@ -51,7 +51,7 @@ const reducer = combineReducers({
   editProject: editProjectReducer,
   deleteProject: deleteProjectReducer,
   addProject: createProjectReducer,
-  projects: teamListReducer,
+  teams: teamListReducer,
   editTeam: editTeamReducer,
   deleteTeam: deleteTeamReducer,
   addTeam: createTeamReducer,
