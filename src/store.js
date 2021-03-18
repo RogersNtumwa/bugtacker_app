@@ -29,6 +29,7 @@ import {
   editTeamReducer,
   teamListReducer,
 } from "./reducers/team";
+import { userReducer } from "./reducers/users";
 
 const middleware = [thunk];
 
@@ -37,6 +38,7 @@ const initialState = {};
 const reducer = combineReducers({
   auth: user,
   alert: alertReducer,
+  users: userReducer,
   bug: bugDetails,
   bugs: bugsList,
   addBug: createBugReducer,
