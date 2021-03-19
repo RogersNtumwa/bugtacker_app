@@ -51,8 +51,6 @@ export const bugDetails = (id) => async (dispatch) => {
       type: BUG_DETAILS_SUCCESS,
       payload: data,
     });
-
-    // dispatch(getRelatedProducts(id));
   } catch (error) {
     dispatch({
       type: BUG_DETAILS_FAIL,
@@ -99,16 +97,12 @@ export const createBug = (formData) => async (dispatch) => {
       },
     };
     const body = JSON.stringify(formData);
+
     const { data } = await axios.post(
-      "http://localhost:5000/api/v1/bugs",
+      "https://bugtracker-api-1.herokuapp.com/api/v1/bugs",
       body,
       config
     );
-    // const { data } = await axios.post(
-    //   "https://bugtracker-api-1.herokuapp.com/api/v1/bugs",
-    //   body,
-    //   config
-    // );
     dispatch({
       type: BUG_CREATE_SUCCESS,
       payload: data,
@@ -140,15 +134,10 @@ export const updateBug = (bug) => async (dispatch, getstate) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/v1/bugs/${bug._id}`,
+      `https://bugtracker-api-1.herokuapp.com/api/v1/bugs/${bug._id}`,
       bug,
       config
     );
-    // const { data } = await axios.put(
-    //   `https://bugtracker-api-1.herokuapp.com/api/v1/bugs/${bug._id}`,
-    //   bug,
-    //   config
-    // );
     dispatch({
       type: BUG_UPDATE_SUCCESS,
       payload: data,
