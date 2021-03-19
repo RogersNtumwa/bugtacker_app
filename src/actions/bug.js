@@ -100,10 +100,15 @@ export const createBug = (formData) => async (dispatch) => {
     };
     const body = JSON.stringify(formData);
     const { data } = await axios.post(
-      "https://bugtracker-api-1.herokuapp.com/api/v1/bugs",
+      "http://localhost:5000/api/v1/bugs",
       body,
       config
     );
+    // const { data } = await axios.post(
+    //   "https://bugtracker-api-1.herokuapp.com/api/v1/bugs",
+    //   body,
+    //   config
+    // );
     dispatch({
       type: BUG_CREATE_SUCCESS,
       payload: data,

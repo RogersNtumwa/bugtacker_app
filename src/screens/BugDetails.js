@@ -1,5 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Accordion, Button, Card, Container, Jumbotron } from "react-bootstrap";
+import {
+  Accordion,
+  Button,
+  Card,
+  Container,
+  Image,
+  Jumbotron,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -71,7 +78,7 @@ const BugDetails = ({ match }) => {
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
                     {bug.data.attachments.length > 0 ? (
-                      <Card.Body>Hello! I'm the body</Card.Body>
+                      <Card.Body>My images here</Card.Body>
                     ) : (
                       <Card.Body>"No attachments found"</Card.Body>
                     )}

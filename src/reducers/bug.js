@@ -108,7 +108,7 @@ export const createBugReducer = (
   }
 };
 
-export const editBugReducer = (state = { bug: {} }, action) => {
+export const editBugReducer = (state = { bug: {}, success: false }, action) => {
   const { type, payload } = action;
 
   switch (type) {

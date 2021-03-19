@@ -144,9 +144,10 @@ const BugEditScreen = ({ match, history }) => {
               <option>{status}</option>
               <option value="New">New</option>
               <option value="Coding">Coding</option>
-              <option value="In Reveiw">In Review</option>
+              <option value="In-Review">In Review</option>
               <option value="Branded">Branded</option>
               <option value="Re-assigned">Re-assigned</option>
+              <option value="closed">Closed</option>
               <option value="Rejected">Rejected</option>
             </Form.Control>
           </Form.Group>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -35,9 +35,6 @@ const AddBug = ({ history }) => {
     formData.attachments = attachments;
     console.log(formData);
     dispatch(createBug(formData));
-
-    // // // redirecting not working fine yet
-    success && history.push("/dasboard/bugs");
   };
 
   const handleChange = (e) => {
@@ -64,6 +61,12 @@ const AddBug = ({ history }) => {
       reader.readAsDataURL(file);
     });
   };
+
+  useEffect(() => {
+    if (success) {
+      return history.push("/dashboard/bugs");
+    }
+  }, [success, history]);
 
   return (
     <Container>
