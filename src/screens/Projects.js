@@ -31,7 +31,7 @@ const Projects = ({ history, match }) => {
             <h1>projects List</h1>
           </Col>
           <Col className="text-right">
-            <Link to="/admin/projects/add">
+            <Link to="/dashboard/newProject">
               <Button className="my-3">
                 <i className="fas fa-plus"></i> Add project
               </Button>

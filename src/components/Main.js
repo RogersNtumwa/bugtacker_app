@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
 import AddBug from "../screens/AddBug";
+import AddProject from "../screens/AddProject";
 
 import BugDetails from "../screens/BugDetails";
 import BugEditScreen from "../screens/BugEditScreen";
@@ -47,6 +48,7 @@ const Main = ({ match, history }) => {
             exact
           />
           <Route path={url + "/projects"} component={Projects} exact />
+          <Route path={url + "/newProject"} component={AddProject} exact />
           <Route path={url + "/roles"} component={Roles} exact />
         </div>
       </div>
