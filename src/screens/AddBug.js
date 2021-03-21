@@ -6,6 +6,7 @@ import { createBug } from "../actions/bug";
 
 import ShowProjects from "../components/ShowProjects";
 import ShowUsers from "../components/ShowUsers";
+import Alert from "../components/Alert";
 
 const AddBug = ({ history }) => {
   const [formData, setformData] = useState({});
@@ -31,9 +32,7 @@ const AddBug = ({ history }) => {
 
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
-
     formData.attachments = attachments;
-    console.log(formData);
     dispatch(createBug(formData));
   };
 
@@ -70,6 +69,7 @@ const AddBug = ({ history }) => {
 
   return (
     <Container>
+      <Alert />
       <Form onSubmit={onSubmitHandlerHandler} encType="multipart/form-data">
         <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">

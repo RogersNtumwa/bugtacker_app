@@ -12,6 +12,9 @@ import {
   PROJECT_UPDATE_REQUEST,
   PROJECT_UPDATE_SUCCESS,
   PROJECT_UPDATE_FAIL,
+  PROJECT_DELETE_REQUEST,
+  PROJECT_DELETE_SUCCESS,
+  PROJECT_DELETE_FAIL,
 } from "./types";
 
 export const getProjects = () => async (dispatch) => {
@@ -93,6 +96,29 @@ export const updateProject = (project) => async (dispatch, getstate) => {
     }
     dispatch({
       type: PROJECT_UPDATE_FAIL,
+    });
+  }
+};
+
+export const deleteProject = (id) => async (dispatch) => {
+  dispatch({ type: PROJECT_DELETE_REQUEST });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    await axios.delete(
+      `https://bugtracker-api-1.herokuapp.com/api/v1/projects/${id}`
+    );
+    dispatch({
+      type: PROJECT_DELETE_SUCCESS,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: PROJECT_DELETE_FAIL,
     });
   }
 };

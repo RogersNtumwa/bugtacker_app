@@ -101,7 +101,7 @@ export const createBugReducer = (
     case BUG_CREATE_FAIL:
       return {
         loading: false,
-        error: payload,
+        errors: payload,
       };
     default:
       return state;
@@ -135,6 +135,7 @@ export const editBugReducer = (state = { bug: {}, success: false }, action) => {
       return state;
   }
 };
+
 export const commentBugReducer = (state = { bug: {} }, action) => {
   const { type, payload } = action;
 
