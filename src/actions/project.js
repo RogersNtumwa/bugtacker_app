@@ -15,6 +15,9 @@ import {
   PROJECT_DELETE_REQUEST,
   PROJECT_DELETE_SUCCESS,
   PROJECT_DELETE_FAIL,
+  PROJECT_DETAILS_REQUEST,
+  PROJECT_DETAILS_SUCCESS,
+  PROJECT_DETAILS_FAIL,
 } from "./types";
 
 export const getProjects = () => async (dispatch) => {
@@ -35,6 +38,27 @@ export const getProjects = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PROJECTS_LIST_FAIL,
+    });
+  }
+};
+
+export const projectDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: PROJECT_DETAILS_REQUEST });
+    const { data } = await axios.get(
+      `https://bugtracker-api-1.herokuapp.com/api/v1/projects/${id}`
+    );
+    dispatch({
+      type: PROJECT_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROJECT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };

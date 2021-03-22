@@ -21,6 +21,7 @@ import {
   createProjectReducer,
   deleteProjectReducer,
   editProjectReducer,
+  projectDetailsReducer,
   projectListReducer,
 } from "./reducers/project";
 import {
@@ -50,6 +51,7 @@ const reducer = combineReducers({
   deleteRole: deleteRoleReducer,
   addRole: createRoleReducer,
   projects: projectListReducer,
+  project: projectDetailsReducer,
   editProject: editProjectReducer,
   deleteProject: deleteProjectReducer,
   addProject: createProjectReducer,

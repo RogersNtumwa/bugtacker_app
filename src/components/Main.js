@@ -8,6 +8,7 @@ import BugDetails from "../screens/BugDetails";
 import BugEditScreen from "../screens/BugEditScreen";
 import Bugs from "../screens/Bugs";
 import Dashboard from "../screens/Dashboard";
+import EditProject from "../screens/EditProject";
 import Projects from "../screens/Projects";
 import Roles from "../screens/Roles";
 import Userprofile from "../screens/Userprofile";
@@ -48,6 +49,11 @@ const Main = ({ match, history }) => {
             exact
           />
           <Route path={url + "/projects"} component={Projects} exact />
+          <Route
+            path={url + "/projects/:id/edit"}
+            component={EditProject}
+            exact
+          />
           <Route path={url + "/newProject"} component={AddProject} exact />
           <Route path={url + "/roles"} component={Roles} exact />
         </div>

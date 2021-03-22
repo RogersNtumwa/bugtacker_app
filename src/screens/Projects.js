@@ -59,10 +59,12 @@ const Projects = ({ history, match }) => {
                 <tr key={project._id}>
                   <td>{project._id}</td>
                   <td>{project.title}</td>
-                  <td>${project.description}</td>
+                  <td>{project.description}</td>
                   <td>{project.createdDate}</td>
                   <td>
-                    <LinkContainer to={`/projects/${project._id}/edit`}>
+                    <LinkContainer
+                      to={`/dashboard/projects/${project._id}/edit`}
+                    >
                       <Button variant="light" className="btn-sm">
                         <i className="fas fa-edit"></i>
                       </Button>

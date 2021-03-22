@@ -12,6 +12,9 @@ import {
   PROJECT_DELETE_FAIL,
   PROJECT_DELETE_REQUEST,
   PROJECT_DELETE_SUCCESS,
+  PROJECT_DETAILS_REQUEST,
+  PROJECT_DETAILS_SUCCESS,
+  PROJECT_DETAILS_FAIL,
 } from "../actions/types";
 
 export const projectListReducer = (
@@ -35,6 +38,30 @@ export const projectListReducer = (
         error: payload,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const projectDetailsReducer = (
+  state = { project: {}, loading: true },
+  action
+) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case PROJECT_DETAILS_REQUEST:
+      return { loading: true, ...state };
+    case PROJECT_DETAILS_SUCCESS:
+      return {
+        project: payload,
+        loading: false,
+      };
+    case PROJECT_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: payload,
+      };
     default:
       return state;
   }
