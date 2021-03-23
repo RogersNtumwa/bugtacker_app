@@ -1,6 +1,6 @@
 import axios from "axios";
-
 import setAuthToken from "../utils/setAuthToken";
+
 import {
   TEAMS_LIST_FAIL,
   TEAMS_LIST_REQUEST,

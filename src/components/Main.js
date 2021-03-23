@@ -10,6 +10,7 @@ import Bugs from "../screens/Bugs";
 import Dashboard from "../screens/Dashboard";
 import EditProject from "../screens/EditProject";
 import Projects from "../screens/Projects";
+import RegisterUser from "../screens/RegisterUser";
 import Roles from "../screens/Roles";
 import Userprofile from "../screens/Userprofile";
 import Users from "../screens/Users";
@@ -39,6 +40,7 @@ const Main = ({ match, history }) => {
         <div className="main">
           <Route path={url} component={Dashboard} exact />
           <Route path={url + "/users"} component={Users} exact />
+          <Route path={url + "/register"} component={RegisterUser} exact />
           <Route path={url + "/profile"} component={Userprofile} exact />
           <Route path={url + "/bugs"} component={Bugs} exact />
           <Route path={url + "/bugs/:id"} component={BugDetails} exact />

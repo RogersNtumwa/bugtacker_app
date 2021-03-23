@@ -46,10 +46,11 @@ const EditProject = ({ match, history }) => {
 
   return (
     <Fragment>
-      <Link to="/dashboard/projects" className="btn btn-light my-3">
-        Go Back
-      </Link>
       <Container>
+        <Link to="/dashboard/projects" className="btn btn-light my-3">
+          Go Back
+        </Link>
+
         <h1>Edit Prject</h1>
         {loadingUpdate && "Update pending"}
         {loading ? (

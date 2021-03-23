@@ -29,7 +29,6 @@ const Login = ({ history }) => {
     e.preventDefault();
     console.log(formData);
     dispatch(userLogin(email, password));
-    
   };
 
   return (

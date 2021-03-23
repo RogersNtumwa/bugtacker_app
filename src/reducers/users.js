@@ -10,18 +10,15 @@ export const userReducer = (state = { users: [], loading: true }, action) => {
   switch (type) {
     case USERS_LIST_REQUEST:
       return {
-        ...state,
         loading: true,
       };
     case USERS_LIST_SUCCESS:
       return {
-        ...state,
         loading: false,
         users: payload,
       };
     case USERS_LIST_FAIL:
       return {
-        ...state,
         loading: false,
         errors: payload,
       };

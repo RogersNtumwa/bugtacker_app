@@ -11,13 +11,15 @@ import {
 import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
 
-export const registerUser = ({ name, email, password }) => async (dispatch) => {
+export const registerUser = ({ firtName, lastName, email, password }) => async (
+  dispatch
+) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ firtName, lastName, email, password });
   try {
     const { data } = await axios.post(
       "https://bugtracker-api-1.herokuapp.com/api/v1/auth/register",
