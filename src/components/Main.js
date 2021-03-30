@@ -3,15 +3,18 @@ import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
 import AddBug from "../screens/AddBug";
 import AddProject from "../screens/AddProject";
+import AddTeam from "../screens/AddTeam";
 
 import BugDetails from "../screens/BugDetails";
 import BugEditScreen from "../screens/BugEditScreen";
 import Bugs from "../screens/Bugs";
 import Dashboard from "../screens/Dashboard";
 import EditProject from "../screens/EditProject";
+import EditTeam from "../screens/EditTeam";
 import Projects from "../screens/Projects";
 import RegisterUser from "../screens/RegisterUser";
 import Roles from "../screens/Roles";
+import Teams from "../screens/Teams";
 import Userprofile from "../screens/Userprofile";
 import Users from "../screens/Users";
 import Header from "./Header";
@@ -58,6 +61,13 @@ const Main = ({ match, history }) => {
           />
           <Route path={url + "/newProject"} component={AddProject} exact />
           <Route path={url + "/roles"} component={Roles} exact />
+          <Route path={url + "/teams"} component={Teams} exact />
+          <Route
+            path={url + "/teams/:id/edit"}
+            component={EditTeam}
+            exact
+          />
+          <Route path={url + "/newTeam"} component={AddTeam} exact />
         </div>
       </div>
     </Fragment>

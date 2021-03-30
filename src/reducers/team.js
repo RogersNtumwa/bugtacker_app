@@ -12,9 +12,12 @@ import {
   TEAM_DELETE_FAIL,
   TEAM_DELETE_REQUEST,
   TEAM_DELETE_SUCCESS,
+  TEAM_DETAILS_REQUEST,
+  TEAM_DETAILS_SUCCESS,
+  TEAM_DETAILS_FAIL,
 } from "../actions/types";
 
-export const teamListReducer = (state = { teams: [] }, action) => {
+export const teamListReducer = (state = { teams: [],loading: true }, action) => {
   const { type, payload } = action;
   switch (type) {
     case TEAMS_LIST_REQUEST:
@@ -22,16 +25,40 @@ export const teamListReducer = (state = { teams: [] }, action) => {
 
     case TEAMS_LIST_SUCCESS:
       return {
-        loadi: false,
+        loading: false,
         teams: payload,
       };
 
     case TEAMS_LIST_FAIL:
       return {
-        loadi: false,
+        loading: false,
         error: payload,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const teamDetailsReducer = (
+  state = { team: {}, loading: true },
+  action
+) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case TEAM_DETAILS_REQUEST:
+      return { loading: true, ...state };
+    case TEAM_DETAILS_SUCCESS:
+      return {
+        team: payload,
+        loading: false,
+      };
+    case TEAM_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: payload,
+      };
     default:
       return state;
   }

@@ -28,6 +28,7 @@ import {
   createTeamReducer,
   deleteTeamReducer,
   editTeamReducer,
+  teamDetailsReducer,
   teamListReducer,
 } from "./reducers/team";
 import { userReducer } from "./reducers/users";
@@ -56,6 +57,7 @@ const reducer = combineReducers({
   deleteProject: deleteProjectReducer,
   addProject: createProjectReducer,
   teams: teamListReducer,
+  team:teamDetailsReducer,
   editTeam: editTeamReducer,
   deleteTeam: deleteTeamReducer,
   addTeam: createTeamReducer,

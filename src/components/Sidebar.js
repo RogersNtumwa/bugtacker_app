@@ -46,7 +46,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="sidebar__menu-item">
-          <Link to="/dashboard/users" className="link">
+          <Link to="/dashboard/teams" className="link">
             <span className="link__icon">
               <FaUsers />
             </span>
