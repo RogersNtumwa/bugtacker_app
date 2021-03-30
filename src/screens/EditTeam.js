@@ -19,18 +19,18 @@ const EditTeam = ({ match, history }) => {
   const teamUpdate = useSelector((state) => state.editTeam);
   const { loading: loadingUpdate, success } = teamUpdate;
 
-  useEffect(() => {
-    if (success) {
-      dispatch({ type:TEAM_UPDATE_RESET });
-      history.push("/dashboard/teams");
-    } else {
-      if (!data.teamName || data._id !== teamId) {
-        dispatch(teamDetails(teamId));
-      } else {
-        setTitle(data.teamName);
-      }
-    }
-  }, [dispatch, history, data, teamId, success]);
+//   useEffect(() => {
+//     if (success) {
+//       dispatch({ type:TEAM_UPDATE_RESET });
+//       history.push("/dashboard/teams");
+//     } else {
+//       if (!data.teamName || data._id !== teamId) {
+//         dispatch(teamDetails(teamId));
+//       } else {
+//         setTitle(data.teamName);
+//       }
+//     }
+//   }, [dispatch, history, data, teamId, success]);
 
   const onSubmitHandlerHandler = (e) => {
     e.preventDefault();
