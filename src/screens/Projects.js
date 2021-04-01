@@ -12,10 +12,12 @@ const Projects = ({ history, match }) => {
   const dispatch = useDispatch();
   const projectList = useSelector((state) => state.projects);
   const { loading, projects } = projectList;
+  const projectDelete = useSelector((state) => state.deleteProject);
+  const { success } = projectDelete;
 
   useEffect(() => {
     dispatch(getProjects());
-  }, [dispatch]);
+  }, [dispatch,success]);
 
   const deleteProjectHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this project?")) {

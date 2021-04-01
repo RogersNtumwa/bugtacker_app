@@ -63,15 +63,21 @@ export const projectDetails = (id) => async (dispatch) => {
   }
 };
 
-export const createProject = () => async (dispatch) => {
+export const createProject = ({title, description}) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
   try {
     dispatch({ type: PROJECT_CREATE_REQUEST });
 
-    const { data } = await axios.get(
-      "https://bugtracker-api-1.herokuapp.com/api/v1/projects"
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ title, description});
+    const { data } = await axios.post(
+      "https://bugtracker-api-1.herokuapp.com/api/v1/projects",body, config
     );
 
     dispatch({
