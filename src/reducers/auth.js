@@ -1,7 +1,5 @@
 import {
   AUTH_ERROR,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
   USER_LOADED,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -23,13 +21,7 @@ const user = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case REGISTER_SUCCESS:
-      return{
-         ...state,
-        ...payload,
-        loading: false,
-      }
-      
+    
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       return {
@@ -38,7 +30,6 @@ const user = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
       };
-    case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case USER_LOGOUT:

@@ -32,6 +32,7 @@ import {
   teamListReducer,
 } from "./reducers/team";
 import { userReducer,deleteUserReducer } from "./reducers/users";
+import {registerUserReducer} from "./reducers/registerUser"
 
 const middleware = [thunk];
 
@@ -62,6 +63,7 @@ const reducer = combineReducers({
   editTeam: editTeamReducer,
   deleteTeam: deleteTeamReducer,
   addTeam: createTeamReducer,
+  registerUser:registerUserReducer
 });
 
 const store = createStore(

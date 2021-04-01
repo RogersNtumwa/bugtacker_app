@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { registerUser } from "../actions/auth";
 import InputElement from "../components/Elements/InputElement";
 import Alert from "../components/Alert";
 import { Button, Container } from "react-bootstrap";
 
-const RegisterUser = () => {
+const RegisterUser = ({history}) => {
   const dispatch = useDispatch();
+  const userRegister = useSelector(state => state.registerUser)
+  const {success}= userRegister
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -23,10 +26,14 @@ const RegisterUser = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(registerUser(formData));
   };
 
+  useEffect(() => {
+    if (success) {
+      return history.push("/dashboard/users");
+    }
+  }, [success, history]);
   return (
     <Container>
       <form className="form" onSubmit={onSubmitHandler}>
