@@ -4,24 +4,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 
-import { getUsers } from "../actions/users";
+import { getUsers,deleteUser } from "../actions/users";
 import AdminSearch from "../components/AdminSearch";
 
 const Users = () => {
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
+
+  // getting users state
   const usersList = useSelector((state) => state.users);
   const { loading, users } = usersList;
 
+  // getting delete user state
+   const deleteUsers = useSelector((state) => state.deleteUser);
+  const { success: successDelete } = deleteUsers;
+
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+  }, [dispatch,successDelete]);
 
   const deleteProjectHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
-      // dispatch(deleteProject(id));
+      dispatch(deleteUser(id));
     }
   };
+  
   const searched = (keyword) => (c) =>
     c.firstName.toLowerCase().includes(keyword);
   return (

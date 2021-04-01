@@ -22,6 +22,7 @@ const Projects = ({ history, match }) => {
       dispatch(deleteProject(id));
     }
   };
+  
   const searched = (keyword) => (c) => c.title.toLowerCase().includes(keyword);
   return (
     <Fragment>

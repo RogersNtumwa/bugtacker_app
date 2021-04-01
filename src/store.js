@@ -31,7 +31,7 @@ import {
   teamDetailsReducer,
   teamListReducer,
 } from "./reducers/team";
-import { userReducer } from "./reducers/users";
+import { userReducer,deleteUserReducer } from "./reducers/users";
 
 const middleware = [thunk];
 
@@ -41,6 +41,7 @@ const reducer = combineReducers({
   auth: user,
   alert: alertReducer,
   users: userReducer,
+  deleteUser: deleteUserReducer,
   bug: bugDetails,
   bugs: bugsList,
   addBug: createBugReducer,

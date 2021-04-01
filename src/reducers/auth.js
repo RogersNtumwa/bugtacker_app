@@ -24,6 +24,12 @@ const user = (state = initialState, action) => {
 
   switch (type) {
     case REGISTER_SUCCESS:
+      return{
+         ...state,
+        ...payload,
+        loading: false,
+      }
+      
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       return {

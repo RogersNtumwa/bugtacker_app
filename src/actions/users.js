@@ -9,6 +9,9 @@ import {
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
+  USER_DELETE_REQUEST,
+  USER_DELETE_SUCCESS,
+  USER_DELETE_FAIL,
 } from "./types";
 
 export const getUsers = () => async (dispatch) => {
@@ -54,6 +57,29 @@ export const userDetails = (id) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+export const deleteUser = (id) => async (dispatch) => {
+  dispatch({ type: USER_DELETE_REQUEST });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    await axios.delete(
+      `https://bugtracker-api-1.herokuapp.com/api/v1/users/${id}`
+    );
+    dispatch({
+      type: USER_DELETE_SUCCESS,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: USER_DELETE_FAIL,
     });
   }
 };
