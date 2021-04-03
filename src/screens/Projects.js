@@ -17,14 +17,14 @@ const Projects = ({ history, match }) => {
 
   useEffect(() => {
     dispatch(getProjects());
-  }, [dispatch,success]);
+  }, [dispatch, success]);
 
   const deleteProjectHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       dispatch(deleteProject(id));
     }
   };
-  
+
   const searched = (keyword) => (c) => c.title.toLowerCase().includes(keyword);
   return (
     <Fragment>

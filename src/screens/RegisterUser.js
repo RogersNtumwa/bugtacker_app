@@ -6,10 +6,10 @@ import InputElement from "../components/Elements/InputElement";
 import Alert from "../components/Alert";
 import { Button, Container } from "react-bootstrap";
 
-const RegisterUser = ({history}) => {
+const RegisterUser = ({ history }) => {
   const dispatch = useDispatch();
-  const userRegister = useSelector(state => state.registerUser)
-  const {success}= userRegister
+  const userRegister = useSelector((state) => state.registerUser);
+  const { success } = userRegister;
 
   const [formData, setFormData] = useState({
     firstName: "",

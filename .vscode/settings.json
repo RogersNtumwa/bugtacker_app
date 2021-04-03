@@ -1,5 +1,11 @@
 {
-    "files.autoSave": "afterDelay",
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true
+  "files.autoSave": "afterDelay",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.fontWeight": null,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

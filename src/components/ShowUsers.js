@@ -15,7 +15,7 @@ const ShowUsers = ({ assignedTo, handleChange }) => {
     <Fragment>
       {!loading && (
         <Form.Group as={Col} controlId="category">
-          <Form.Label>Select User</Form.Label>
+          <Form.Label>Assign To a Developer</Form.Label>
           <Form.Control
             as="select"
             name="assignedTo"
@@ -23,7 +23,7 @@ const ShowUsers = ({ assignedTo, handleChange }) => {
             onChange={handleChange}
           >
             <Fragment>
-              <option>Select User</option>
+              <option>Select Developer</option>
               {users.data.map((user) => (
                 <option key={user._id} value={user._id}>
                   {user.firstName}

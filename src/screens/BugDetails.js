@@ -1,27 +1,37 @@
 import React, { Fragment, useEffect, useState } from "react";
 import {
-  Accordion,
   Button,
   Card,
   Container,
+  Form,
   Image,
   Jumbotron,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 
 import { bugDetails } from "../actions/bug";
+import ImageSlider from "../components/ImageSlider";
 
+Modal.setAppElement("#root");
 const BugDetails = ({ match }) => {
+  const [showModal, setShowModal] = useState(false);
   const bugData = useSelector((state) => state.bug);
 
-  const { loading, bug } = bugData;
+  const {
+    loading,
+    bug: { data },
+  } = bugData;
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(bugDetails(match.params.id));
   }, [dispatch, match]);
 
+  const onShowHandler = () => {
+    setShowModal(!showModal);
+  };
   return (
     <Fragment>
       <Container>
@@ -29,62 +39,61 @@ const BugDetails = ({ match }) => {
           Go Back
         </Link>
         {loading ? (
-          "loading"
+          "loading Bug"
         ) : (
           <div>
             <div className="row">
               <div className="col-md-10">
-                <h2>Details for Bug:({bug.data._id}) </h2>
+                <h2>Details for Bug:({data._id}) </h2>
               </div>
               <div className="col-md-2">
                 <Link
                   className="btn btn-light my-3"
-                  to={`/dashboard/bugs/${bug.data._id}/edit`}
+                  to={`/dashboard/bugs/${data._id}/edit`}
                 >
                   Edit Bug
                 </Link>
               </div>
             </div>
             <Jumbotron>
-              <h4 className="title">Title: {bug.data.title}</h4>
+              <h4 className="title">Title: {data.title}</h4>
               <p>
-                <h6>Description:</h6> {bug.data.description}.
+                <h6>Description:</h6> {data.description}.
               </p>
               <p>
                 <h6>Status:</h6>
-                {bug.data.status}
+                {data.status}
               </p>
               <p>
-                <h6>Priority:</h6> {bug.data.priority}
+                <h6>Priority:</h6> {data.priority}
               </p>
               <p>
-                <h6>Project:</h6> {bug.data.project}
+                <h6>Project:</h6> {data.project}
               </p>
               <p>
-                <h6>AssignedTo:</h6> {bug.data.assignedTo}
+                <h6>AssignedTo:</h6> {data.assignedTo}
               </p>
               <p>
                 <h6>CreatedBy:</h6>
-                {bug.data.createdBy}
+                {data.createdBy}
               </p>
-              <Accordion>
-                <Card>
-                  <Accordion.Toggle
-                    as={Card.Header}
-                    variant="link"
-                    eventKey="0"
-                  >
-                    View attachements
-                  </Accordion.Toggle>
-                  <Accordion.Collapse eventKey="0">
-                    {bug.data.attachments.length > 0 ? (
-                      <Card.Body>My images here</Card.Body>
-                    ) : (
-                      <Card.Body>"No attachments found"</Card.Body>
-                    )}
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
+              <Form>
+                <Form.Row>
+                  <Form.Group id="formGridCheckbox">
+                    <Form.Check
+                      type="checkbox"
+                      label="Show attachments"
+                      onChange={onShowHandler}
+                    />
+                  </Form.Group>
+                </Form.Row>
+              </Form>
+              <Modal isOpen={showModal} onRequestClose={onShowHandler}>
+                {/* <div>
+                  <p onClick={onShowHandler}>X</p>
+                </div> */}
+                <ImageSlider data={data.attachments} />
+              </Modal>
             </Jumbotron>
           </div>
         )}
