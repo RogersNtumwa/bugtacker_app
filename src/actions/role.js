@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import setAuthToken from "../utils/setAuthToken";
+import { setAlert } from "./alert";
 import {
   ROLES_LIST_FAIL,
   ROLES_LIST_REQUEST,
@@ -14,6 +15,9 @@ import {
   ROLE_DELETE_FAIL,
   ROLE_DELETE_REQUEST,
   ROLE_DELETE_SUCCESS,
+  ROLE_ASSIGN_REQUEST,
+  ROLE_ASSIGN_SUCCESS,
+  ROLE_ASSIGN_FAIL,
 } from "./types";
 
 export const getRoles = () => async (dispatch) => {
@@ -33,7 +37,7 @@ export const getRoles = () => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: TEAMS_LIST_FAIL,
+      type: ROLES_LIST_FAIL,
     });
   }
 };
@@ -53,13 +57,13 @@ export const createRole = () => async (dispatch) => {
       type: ROLE_CREATE_SUCCESS,
       payload: data.data,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
-      type: ROLES_CREATE_FAIL,
+      type: ROLE_CREATE_FAIL,
     });
   }
 };
@@ -88,7 +92,7 @@ export const updateRole = (role) => async (dispatch, getstate) => {
       type: ROLE_UPDATE_SUCCESS,
       payload: data,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
@@ -100,7 +104,7 @@ export const updateRole = (role) => async (dispatch, getstate) => {
 };
 
 export const deleteRole = (id) => async (dispatch) => {
-  dispatch({ type: TEAM_DELETE_REQUEST });
+  dispatch({ type: ROLE_DELETE_REQUEST });
   try {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -111,13 +115,45 @@ export const deleteRole = (id) => async (dispatch) => {
     dispatch({
       type: ROLE_DELETE_SUCCESS,
     });
-  } catch (error) {
+  } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: ROLE_DELETE_FAIL,
+    });
+  }
+};
+
+export const assignRoleToUser = (formData) => async (dispatch) => {
+  dispatch({ type: ROLE_ASSIGN_REQUEST });
+  try {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify(formData);
+    console.log(formData);
+    const { data } = await axios.patch(
+      `https://bugtracker-api-1.herokuapp.com/api/v1/users/roles/${formData.userID}`,
+      body,
+      config
+    );
+    dispatch({
+      type: ROLE_ASSIGN_SUCCESS,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: ROLE_ASSIGN_FAIL,
     });
   }
 };

@@ -132,7 +132,12 @@ const AddBug = ({ history }) => {
               onChange={handleChange}
             />
           </Form.Group>
-          <ShowUsers assignedTo={assignedTo} handleChange={handleChange} />
+          <ShowUsers
+            assignedTo={assignedTo}
+            handleChange={handleChange}
+            label="Assign To Developer"
+            field="assignedTo"
+          />
         </Form.Row>
 
         <Form.Group controlId="formGridAddress1">

@@ -12,6 +12,9 @@ import {
   ROLE_DELETE_FAIL,
   ROLE_DELETE_REQUEST,
   ROLE_DELETE_SUCCESS,
+  ROLE_ASSIGN_REQUEST,
+  ROLE_ASSIGN_SUCCESS,
+  ROLE_ASSIGN_FAIL,
 } from "../actions/types";
 
 export const rolesListReducer = (state = { roles: [] }, action) => {
@@ -22,13 +25,13 @@ export const rolesListReducer = (state = { roles: [] }, action) => {
 
     case ROLES_LIST_SUCCESS:
       return {
-        loadi: false,
+        loading: false,
         roles: payload,
       };
 
     case ROLES_LIST_FAIL:
       return {
-        loadi: false,
+        loading: false,
         error: payload,
       };
 
@@ -103,6 +106,32 @@ export const editRoleReducer = (state = { role: {} }, action) => {
     case ROLE_UPDATE_RESET:
       return {
         role: {},
+      };
+    default:
+      return state;
+  }
+};
+
+export const AssignRoleReducer = (state = { role: {} }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case ROLE_ASSIGN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ROLE_ASSIGN_SUCCESS:
+      return {
+        ...state,
+        success: true,
+        loading: false,
+        role: payload,
+      };
+    case ROLE_ASSIGN_FAIL:
+      return {
+        ...state,
+        success: false,
+        loading: false,
       };
     default:
       return state;

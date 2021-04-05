@@ -12,6 +12,7 @@ import {
   editBugReducer,
 } from "./reducers/bug";
 import {
+  AssignRoleReducer,
   createRoleReducer,
   deleteRoleReducer,
   editRoleReducer,
@@ -31,8 +32,8 @@ import {
   teamDetailsReducer,
   teamListReducer,
 } from "./reducers/team";
-import { userReducer,deleteUserReducer } from "./reducers/users";
-import {registerUserReducer} from "./reducers/registerUser"
+import { userReducer, deleteUserReducer } from "./reducers/users";
+import { registerUserReducer } from "./reducers/registerUser";
 
 const middleware = [thunk];
 
@@ -53,17 +54,18 @@ const reducer = combineReducers({
   editRoles: editRoleReducer,
   deleteRole: deleteRoleReducer,
   addRole: createRoleReducer,
+  assignRole: AssignRoleReducer,
   projects: projectListReducer,
   project: projectDetailsReducer,
   editProject: editProjectReducer,
   deleteProject: deleteProjectReducer,
   addProject: createProjectReducer,
   teams: teamListReducer,
-  team:teamDetailsReducer,
+  team: teamDetailsReducer,
   editTeam: editTeamReducer,
   deleteTeam: deleteTeamReducer,
   addTeam: createTeamReducer,
-  registerUser:registerUserReducer
+  registerUser: registerUserReducer,
 });
 
 const store = createStore(

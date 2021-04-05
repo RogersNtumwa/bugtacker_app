@@ -3,7 +3,7 @@ import { Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../actions/users";
 
-const ShowUsers = ({ assignedTo, handleChange }) => {
+const ShowUsers = ({ assignedTo, handleChange, label, field }) => {
   const dispatch = useDispatch();
   const usersList = useSelector((state) => state.users);
   const { loading, users } = usersList;
@@ -15,15 +15,15 @@ const ShowUsers = ({ assignedTo, handleChange }) => {
     <Fragment>
       {!loading && (
         <Form.Group as={Col} controlId="category">
-          <Form.Label>Assign To a Developer</Form.Label>
+          <Form.Label>{label}</Form.Label>
           <Form.Control
             as="select"
-            name="assignedTo"
+            name={field}
             value={assignedTo}
             onChange={handleChange}
           >
             <Fragment>
-              <option>Select Developer</option>
+              <option>{label}</option>
               {users.data.map((user) => (
                 <option key={user._id} value={user._id}>
                   {user.firstName}
