@@ -27,7 +27,6 @@ export const getTeams = () => async (dispatch) => {
   try {
     dispatch({ type: TEAMS_LIST_REQUEST });
 
-    
     const { data } = await axios.get(
       "https://bugtracker-api-1.herokuapp.com/api/v1/teams"
     );
@@ -64,7 +63,7 @@ export const teamDetails = (id) => async (dispatch) => {
   }
 };
 
-export const createTeam = ({teamName}) => async (dispatch) => {
+export const createTeam = ({ teamName }) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -72,14 +71,15 @@ export const createTeam = ({teamName}) => async (dispatch) => {
     dispatch({ type: TEAM_CREATE_REQUEST });
 
     const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
     const body = JSON.stringify({ teamName });
 
     const { data } = await axios.post(
-      "https://bugtracker-api-1.herokuapp.com/api/v1/teams",body,
+      "https://bugtracker-api-1.herokuapp.com/api/v1/teams",
+      body,
       config
     );
     dispatch({

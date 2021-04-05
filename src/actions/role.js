@@ -42,17 +42,23 @@ export const getRoles = () => async (dispatch) => {
   }
 };
 
-export const createRole = () => async (dispatch) => {
+export const createRole = ({ title }) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
   try {
     dispatch({ type: ROLE_CREATE_REQUEST });
-
-    const { data } = await axios.get(
-      "https://bugtracker-api-1.herokuapp.com/api/v1/roles"
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ title });
+    const { data } = await axios.post(
+      "https://bugtracker-api-1.herokuapp.com/api/v1/roles",
+      body,
+      config
     );
-
     dispatch({
       type: ROLE_CREATE_SUCCESS,
       payload: data.data,

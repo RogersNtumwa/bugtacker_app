@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -34,16 +34,18 @@ const Roles = () => {
 
   return (
     <Container>
-      <div className="row">
-        <div className="col-md-10">
-          <h1>Manage Roles screen</h1>
-        </div>
-        <div className="col-md-2">
-          <Link className="btn btn-light my-3" to={"/dashboard/newRole"}>
-            Add Role
+      <Row className="align-items-center">
+        <Col>
+          <h1>Manage User Roles</h1>
+        </Col>
+        <Col className="text-right">
+          <Link to="/dashboard/newRole">
+            <Button className="my-3">
+              <i className="fas fa-plus"></i> Add Role
+            </Button>
           </Link>
-        </div>
-      </div>
+        </Col>
+      </Row>
       {!loading && (
         <Form onSubmit={onSubmitHandler}>
           <Form.Group controlId="exampleForm.ControlSelect2">
